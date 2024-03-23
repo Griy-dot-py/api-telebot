@@ -1,4 +1,8 @@
-from . import greeting
-from . import hello_world
-from . import start
-from . import echo
+#commands
+from .weather import current
+from .weather import change_city
+from .default import start
+from .default import hello_world
+
+#message filters
+from .default import greeting

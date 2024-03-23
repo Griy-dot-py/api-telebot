@@ -1,5 +1,9 @@
 from telebot import TeleBot
-from config.config import BOT_TOKEN
+from telebot.storage import StateMemoryStorage
+from peewee import SqliteDatabase
+from config import config
 
 
-bot = TeleBot(token = BOT_TOKEN)
+storage = StateMemoryStorage()
+bot = TeleBot(token=config.BOT_TOKEN, state_storage=storage)
+db = SqliteDatabase(config.PATH_TO_DB)

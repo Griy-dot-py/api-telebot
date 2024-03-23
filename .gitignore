@@ -166,3 +166,6 @@ cython_debug/
 Docker/
 Dockerfile
 .dockerignore
+
+#sqlite3 databases
+*.db
