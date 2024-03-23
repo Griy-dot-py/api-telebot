@@ -4,7 +4,7 @@ from telebot.types import Message
 from telebot import TeleBot
 
 from loader import message_logger, error_logger
-
+from config.config import LOG_ERRORS, DEBUG_TO_FILE
 
 def log_from(message_hdlr: Callable) -> Callable:
     
@@ -14,8 +14,8 @@ def log_from(message_hdlr: Callable) -> Callable:
         message_logger.debug(incoming)
         try:
             return  message_hdlr(message)
-        except Exception as ex:
-            error_logger.exception(incoming, exc_info = True)
+        except Exception:
+            if LOG_ERRORS: error_logger.exception(incoming, exc_info = True)
             raise
     
     return wrapped_handler

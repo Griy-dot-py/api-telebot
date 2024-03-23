@@ -18,6 +18,13 @@
             "formatter": "base",
             "filename": "logging/errors.log",
             "mode": "a"
+        },
+        "debug_file": {
+            "class": "logging.FileHandler",
+            "level": "DEBUG",
+            "formatter": "base",
+            "filename": "logging/debug.log",
+            "mode": "a"
         }
     },
     "loggers": {
@@ -28,6 +35,10 @@
         "errors": {
             "level": "ERROR",
             "handlers": ["terminal", "error_file"]
+        },
+        "messages.file_debug": {
+            "level": "DEBUG",
+            "handlers": ["debug_file"]
         }
     }
 }

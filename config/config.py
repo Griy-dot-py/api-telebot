@@ -18,3 +18,5 @@ COMMANDS = {
     # "help" : "Print instructions"
 }
 PATH_TO_DB = os.getenv("PATH_TO_DB")
+LOG_ERRORS = eval(os.getenv("LOG_ERRORS").capitalize())
+DEBUG_TO_FILE = eval(os.getenv("DEBUG_TO_FILE").capitalize())
