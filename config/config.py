@@ -10,3 +10,8 @@ else:
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_KEY = os.getenv("API_KEY")
+COMMANDS = {
+    "start" : "Run bot",
+    "hello_world" : "print \"Hello, world!\"",
+    # "help" : "Print instructions"
+}
