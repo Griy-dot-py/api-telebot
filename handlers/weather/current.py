@@ -5,9 +5,11 @@ from database.model_user import User
 from database.model_place import City
 
 from api import open_weather
+from utils.log_messages import log_from
 
 
 @bot.message_handler(commands = ["current"])
+@log_from
 def current(message: Message):
     user: User = User.get(username = message.from_user.username)
     city: City = City.get_by_id(user.city_id)

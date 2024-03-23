@@ -6,15 +6,18 @@ from database.model_place import Country, City
 from database.model_user import User
 
 from api import restcountries, open_weather
+from utils.log_messages import log_from
 
 
 @bot.message_handler(commands = ["change_city"])
+@log_from
 def change_city(message: Message):
     bot.send_message(message.chat.id, "Please, enter your country name:")
     bot.set_state(message.from_user.id, AskFor.country, message.chat.id)
 
 
 @bot.message_handler(state = AskFor.country)
+@log_from
 def take_country(message: Message):
     try:
         country: Country | None = Country.get(name = message.text)
@@ -35,6 +38,7 @@ def take_country(message: Message):
    
 
 @bot.message_handler(state = AskFor.city)
+@log_from
 def take_city(message: Message):
     user: User = User.get(username = message.from_user.username)
     country: Country = Country.get(id = user.country_id)

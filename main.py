@@ -1,10 +1,16 @@
-from loader import bot
+from loader import bot, error_logger
 from telebot import custom_filters
 import handlers  # noqa
-from utils.set_bot_commands import set_default_commands
-
+import utils
 
 if __name__ == "__main__":
     bot.add_custom_filter(custom_filters.StateFilter(bot))
-    set_default_commands(bot)
-    bot.infinity_polling()
+    utils.set_bot_commands.set_default_commands(bot)
+    utils.log_messages.set_logging_to(bot, ["send_message"])
+    
+    try:
+        bot.infinity_polling()
+    except:
+        error_logger.exception("", exc_info = True)
+        error_logger.critical("Критческая ошибка! Работа бота остановлена")
+        pass

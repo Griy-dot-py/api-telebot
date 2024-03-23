@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "base": {
+            "format": "%(name)s(%(levelname)s) : %(asctime)s : %(message)s"
+        }
+    },
+    "handlers": {
+        "terminal": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "base"
+        },
+        "error_file": {
+            "class": "logging.FileHandler",
+            "level": "ERROR",
+            "formatter": "base",
+            "filename": "logging/errors.log",
+            "mode": "a"
+        }
+    },
+    "loggers": {
+        "messages": {
+            "level": "DEBUG",
+            "handlers": ["terminal"]
+        },
+        "errors": {
+            "level": "ERROR",
+            "handlers": ["terminal", "error_file"]
+        }
+    }
+}
