@@ -14,7 +14,8 @@ COMMANDS = {
     "start" : "Run bot",
     "hello_world" : "print \"Hello, world!\"",
     "change_city" : "change city",
-    "current" : "current weather in your city"
+    "current" : "current weather in your city",
+    "low": "the least value",
     # "help" : "Print instructions"
 }
 PATH_TO_DB = os.getenv("PATH_TO_DB")

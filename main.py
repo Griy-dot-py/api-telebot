@@ -3,6 +3,7 @@ from telebot import custom_filters
 import handlers  # noqa
 import utils
 
+
 if __name__ == "__main__":
     bot.add_custom_filter(custom_filters.StateFilter(bot))
     utils.set_bot_commands.set_default_commands(bot)
@@ -10,7 +11,7 @@ if __name__ == "__main__":
     
     try:
         bot.infinity_polling()
-    except:
+    except Exception:
         error_logger.exception("", exc_info = True)
         error_logger.critical("Критческая ошибка! Работа бота остановлена")
         pass
