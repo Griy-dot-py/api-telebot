@@ -1,8 +1,8 @@
 from telebot.types import Message
 from loader import bot
-from handlers.weather.change_city import change_city
-from database.model_user import User
-from utils.log_messages import log_from
+from handlers.weather.commands.change_city import change_city
+from database import User
+from utils.logging import log_from
 
 
 @bot.message_handler(commands = ["start"])

@@ -1,1 +1,1 @@
-from . import ask_for
+from . ask_for import AskFor

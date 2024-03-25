@@ -1,6 +1,6 @@
 from telebot.types import Message
 from loader import bot
-from utils.log_messages import log_from
+from utils.logging import log_from
 
 
 @bot.message_handler(func = lambda message: message.text.lower() in ["привет", "hi", "ку"])

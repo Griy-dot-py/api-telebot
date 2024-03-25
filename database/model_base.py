@@ -1,4 +1,4 @@
-from loader import db
+from database import db
 from peewee import Model
 
 

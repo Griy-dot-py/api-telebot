@@ -16,14 +16,14 @@
             "class": "logging.FileHandler",
             "level": "ERROR",
             "formatter": "base",
-            "filename": "logging/errors.log",
+            "filename": "logs/errors.log",
             "mode": "a"
         },
         "debug_file": {
             "class": "logging.FileHandler",
             "level": "DEBUG",
             "formatter": "base",
-            "filename": "logging/debug.log",
+            "filename": "logs/debug.log",
             "mode": "a"
         }
     },
