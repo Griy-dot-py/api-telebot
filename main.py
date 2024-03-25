@@ -6,7 +6,7 @@ import utils
 
 if __name__ == "__main__":
     bot.add_custom_filter(custom_filters.StateFilter(bot))
-    utils.set_bot_commands.set_default_commands(bot)
+    utils.set_default_commands(bot)
     utils.logging.set_logging_to(bot, ["send_message"])
     
     try:

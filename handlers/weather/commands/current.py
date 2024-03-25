@@ -7,7 +7,7 @@ from utils.logging import log_from
 
 @bot.message_handler(commands = ["current"])
 @log_from
-def current(message: Message):
+def current_cmd(message: Message):
     user: User = User.get(username = message.from_user.username)
     city: City = City.get_by_id(user.city_id)
     

@@ -1,2 +1,2 @@
 from . import logging
-from . import set_bot_commands
+from .set_bot_commands import set_default_commands

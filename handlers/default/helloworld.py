@@ -5,5 +5,5 @@ from utils.logging import log_from
 
 @bot.message_handler(commands = ["hello_world"])
 @log_from
-def hello_world(message: Message):
+def hello_world_cmd(message: Message):
     bot.send_message(message.chat.id, "Hello, world!")

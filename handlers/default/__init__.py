@@ -1,3 +1,3 @@
-from . import starting
-from . import hello_world
-from . import greeting
+from .start import start_cmd
+from .helloworld import hello_world_cmd
+from .greet import greeting

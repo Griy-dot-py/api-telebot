@@ -1,2 +1,2 @@
-from . import data_type
-from . import forecast_range
+from .data_type import dtype_markup
+from . forecast_range import frange_markup
