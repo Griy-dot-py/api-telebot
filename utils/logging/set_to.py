@@ -1,5 +1,5 @@
 from telebot import TeleBot
-from logging import log_to
+from utils.logging import log_to
 
 
 def set_logging_to(bot: TeleBot, log_methods: list[str]):

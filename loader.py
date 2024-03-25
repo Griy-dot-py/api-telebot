@@ -5,7 +5,7 @@ import json, logging.config
 from config import config
 
 
-with open("logging/logging_config.json") as json_conf:
+with open("utils/logging/logging_config.json") as json_conf:
     dict_conf = json.load(json_conf)
 logging.config.dictConfig(dict_conf)
 debug_logger_name = "messages.file_debug" if config.DEBUG_TO_FILE else "messages"

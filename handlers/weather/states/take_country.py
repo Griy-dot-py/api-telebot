@@ -12,7 +12,7 @@ def take_country(message: Message):
     try:
         country: Country | None = Country.get(name = message.text)
     except Country.DoesNotExist:
-        common, code = search_by_name.name(message.text)
+        common, code = search_by_name(message.text)
         try:
             country: Country | None = Country.get(code = code)
         except Country.DoesNotExist:
