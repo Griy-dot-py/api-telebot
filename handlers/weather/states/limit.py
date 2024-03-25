@@ -2,6 +2,7 @@ from telebot.types import Message
 from loader import bot
 from states import AskFor
 from utils.logging import log_from
+from api import forecast
 
 
 @bot.message_handler(state = AskFor.limit)
@@ -14,5 +15,6 @@ def take_limit(message: Message):
     
     # forecast_text = forecast(dtype, frange, limit)
     forecast_text = dtype, frange, limit
+    forecast(*forecast_text)
     bot.send_message(message.chat.id, str(forecast_text))
     bot.delete_state(message.from_user.id, message.chat.id)
