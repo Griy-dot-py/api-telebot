@@ -11,3 +11,5 @@ def low_cmd(message: Message):
     markup = dtype_markup()
     bot.send_message(message.chat.id, "Choose data type:", reply_markup = markup)
     bot.set_state(message.from_user.id, AskFor.dtype, message.chat.id)
+    with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
+        data["desc"] = False
