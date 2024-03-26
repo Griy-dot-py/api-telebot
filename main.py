@@ -1,11 +1,12 @@
 from loader import bot, error_logger
-from telebot import custom_filters
+from telebot.custom_filters import StateFilter
+from filters import ValidCity, ValidCountry
 import handlers  # noqa
 import utils
 
 
 if __name__ == "__main__":
-    bot.add_custom_filter(custom_filters.StateFilter(bot))
+    utils.set_custom_filters(bot, StateFilter(bot), ValidCity(), ValidCountry())
     utils.set_all_commands(bot)
     utils.logging.set_logging_to(bot, ["send_message"])
     
