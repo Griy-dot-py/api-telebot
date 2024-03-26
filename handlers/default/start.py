@@ -1,6 +1,7 @@
 from telebot.types import Message
 from loader import bot
 from handlers.weather.commands import change_city_cmd
+from handlers.default import help_cmd
 from database import User
 from utils.logging import log_from
 
@@ -10,9 +11,10 @@ from utils.logging import log_from
 def start_cmd(message: Message):
     try:
         User.get(username = message.from_user.username)
-    except User.DoesNotExists:
+    except User.DoesNotExist:
         new = User(username = message.from_user.username)
         new.save()
     
-    bot.send_message(message.chat.id, "Hello! Now I can only greet you")
+    bot.send_message(message.chat.id, "Hello! I'm weather telebram bot")
+    help_cmd(message)
     change_city_cmd(message)

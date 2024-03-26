@@ -22,6 +22,7 @@ def take_city(message: Message):
             city = City(name = common, country_id = country.id, latitude = lat, longitude = lon)
             city.save()
     
+    country: Country = Country.get_by_id(city.country_id)
     user.city_id = city.id
     user.save()
     
