@@ -14,7 +14,8 @@ API_KEY = os.getenv("API_KEY")
 DEFAULT_COMMANDS = {
     "start" : "run bot",
     "help" : "help with commands",
-    "hello_world" : "print \"Hello, world!\""
+    "hello_world" : "print \"Hello, world!\"",
+    "cancel" : "discard current operation"
 }
 SETTING_COMMANDS = {
     "change_city" : "change your city"
