@@ -1,17 +1,14 @@
 from loader import bot
 from telebot.types import Message
 from states import AskFor
-from database import Country, User
+from api import search_by_name
+from keyboards.inline import yes_no
 from utils.logging import log_from
 
 
-@bot.message_handler(state = AskFor.country, valid_country = "hard")
+@bot.message_handler(state = AskFor.country, valid_country = "soft")
 @log_from
 def take_country(message: Message):
-    user: User = User.get(username = message.from_user.username)
-    country: Country = Country.get(name = message.text)
-    user.country_id = country.id
-    user.save()
-
-    bot.send_message(message.chat.id, "Now enter your city name:")
-    bot.set_state(message.from_user.id, AskFor.city, message.chat.id)
+    code, country = search_by_name(message.text)
+    bot.send_message(message.chat.id, f"Cannot find this country, maybe you meant {country}({code})?",
+                     reply_markup = yes_no(country))
