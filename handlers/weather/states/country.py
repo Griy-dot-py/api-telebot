@@ -9,6 +9,7 @@ from utils.logging import log_from
 @bot.message_handler(state = AskFor.country)
 @log_from
 def take_country(message: Message):
+    user: User = User.get(username = message.from_user.username)
     try:
         country: Country | None = Country.get(name = message.text)
     except Country.DoesNotExist:
@@ -19,7 +20,6 @@ def take_country(message: Message):
             country = Country(name = common, code = code)
             country.save()
     
-    user: User = User.get(username = message.from_user.username)
     user.country_id = country.id
     user.save()
 
