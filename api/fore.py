@@ -9,7 +9,7 @@ from utils import query
 BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
 
 
-def forecast(city: City, data_type: str, forecast_range: str) -> str:
+def forecast(city: City, data_type: str, forecast_range: str) -> dict:
     query_data = {"lat" : city.latitude,
                   "lon": city.longitude,
                   "appid": API_KEY,

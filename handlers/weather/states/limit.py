@@ -7,7 +7,7 @@ from utils.logging import log_from
 from api import forecast
 
 
-@bot.message_handler(state = AskFor.limit)
+@bot.message_handler(no_cmd = True, state = AskFor.limit, is_digit = True)
 @log_from
 def take_limit(message: Message):
     with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
@@ -15,10 +15,23 @@ def take_limit(message: Message):
         dtype = data["type"]
         frange = data["range"]
         limit = int(message.text)
-    
     user: User = User.get(username = message.from_user.username)
     city: City = City.get_by_id(user.city_id)
+    
     forecast_values = forecast(city, dtype, frange)
+    stamps_left = len(forecast_values)
+    
+    if limit < 1:
+        bot.reply_to(message, "Too tiny number!")
+        return
+    elif frange == "today" and stamps_left < limit:
+        bot.reply_to(message, f"No more than 1 stamp per 3 hours! Stamps left today: {stamps_left}")
+        return
+    elif (frange == "tomorrow" and limit > 8) or (frange == "next_5_days" and limit > 40):
+        bot.reply_to(message, f"No more than 8 stamps per day!")
+        return
+    if frange == "next_5_days":
+        frange = frange.replace("_", " ")
     
     pretty_values = PrettyTimeData(raw = forecast_values,
                                    limit = limit,
