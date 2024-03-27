@@ -6,7 +6,7 @@ from keyboards.inline import yes_no
 from utils.logging import log_from
 
 
-@bot.message_handler(state = AskFor.country, valid_country = "soft")
+@bot.message_handler(no_cmd = True, state = AskFor.country, valid_country = "soft")
 @log_from
 def take_country(message: Message):
     code, country = search_by_name(message.text)
