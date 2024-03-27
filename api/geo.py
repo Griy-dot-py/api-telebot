@@ -2,7 +2,7 @@ import requests
 from config.config import API_KEY
 from utils import query
 
-BASE_URL = "http://api.openweathermap.org/geo/1.0/direct"
+BASE_URL = "https://api.openweathermap.org/geo/1.0/direct"
 
 
 def geolocation(city_name: str,country_code: str) -> tuple[str, float, float]:
