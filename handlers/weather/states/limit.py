@@ -30,12 +30,15 @@ def take_limit(message: Message):
     elif (frange == "tomorrow" and limit > 8) or (frange == "next_5_days" and limit > 40):
         bot.reply_to(message, f"No more than 8 stamps per day!")
         return
-    if frange == "next_5_days":
-        frange = frange.replace("_", " ")
     
-    pretty_values = PrettyTimeData(raw = forecast_values,
+    pretty_values = PrettyTimeData(type = dtype,
+                                   raw = forecast_values,
                                    limit = limit,
                                    desc = desc)
+    if frange == "next_5_days":
+        frange = frange.replace("_", " ")
+    if dtype == "wind_speed":
+        dtype = dtype.replace("_", " ")
     n_est, the = "highest" if desc else "least", "the " if len(forecast_values) > 8 else ""
     title = f"The {n_est} values of {dtype} for {the}{frange} in {city.name}:"
     text = "\n".join((title, *repr(pretty_values).split("\n")))

@@ -1,6 +1,10 @@
 class PrettyTimeData:
+    types = {"humidity" : "%",
+             "temperature" : "°C",
+             "wind_speed" : "m/s"}
     
-    def __init__(self, raw: dict[str, float], limit: int, desc: bool = False) -> None:
+    def __init__(self, type: str, raw: dict[str, float], limit: int, desc: bool = False) -> None:
+        self.unit = PrettyTimeData.types[type]
         self.raw = raw
         self.limit = limit
         self.desc = desc
@@ -19,4 +23,4 @@ class PrettyTimeData:
     
     def __str__(self) -> str:
         order = self.__sort()
-        return "\n".join([f"{key} : {value}" for key, value in order])
+        return "\n".join([f"{key} : {value} {self.unit}" for key, value in order])
