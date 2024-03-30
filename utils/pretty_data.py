@@ -1,9 +1,6 @@
-from typing import OrderedDict
-from pprint import pprint
-
 class PrettyTimeData:
     
-    def __init__(self, raw: dict[str, float | int], limit: int, desc: bool = False) -> None:
+    def __init__(self, raw: dict[str, float], limit: int, desc: bool = False) -> None:
         self.raw = raw
         self.limit = limit
         self.desc = desc

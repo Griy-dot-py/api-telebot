@@ -1,13 +1,15 @@
 from telebot import TeleBot
 from telebot.storage import StateMemoryStorage
 from peewee import SqliteDatabase
-import json, logging.config
-from config import config
+import logging.config, os
+from config import config, dict_config
 
 
-with open("utils/logging/logging_config.json") as json_conf:
-    dict_conf = json.load(json_conf)
-logging.config.dictConfig(dict_conf)
+try:
+    logging.config.dictConfig(dict_config)
+except ValueError:
+    os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs"))
+    logging.config.dictConfig(dict_config)
 debug_logger_name = "messages.file_debug" if config.DEBUG_TO_FILE else "messages"
 storage = StateMemoryStorage()
 

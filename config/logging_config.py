@@ -1,6 +1,8 @@
-{
+import os
+
+dict_config = {
     "version": 1,
-    "disable_existing_loggers": false,
+    "disable_existing_loggers": False,
     "formatters": {
         "base": {
             "format": "%(name)s(%(levelname)s) : %(asctime)s : %(message)s"
@@ -16,14 +18,14 @@
             "class": "logging.FileHandler",
             "level": "ERROR",
             "formatter": "base",
-            "filename": "logs/errors.log",
+            "filename": os.path.join('logs', 'errors.log'),
             "mode": "a"
         },
         "debug_file": {
             "class": "logging.FileHandler",
             "level": "DEBUG",
             "formatter": "base",
-            "filename": "logs/debug.log",
+            "filename": os.path.join('logs', 'debug.log'),
             "mode": "a"
         }
     },

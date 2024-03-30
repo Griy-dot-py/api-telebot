@@ -6,7 +6,7 @@ BASE_URL = "https://api.openweathermap.org/geo/1.0/direct"
 
 
 def geolocation(city_name: str, country_code: str, all: bool = False
-                ) -> tuple[str, float, float] | list[tuple[str, float, float]]:
+                ) -> tuple[str, float, float]:
     query_data = {"q" : (city_name, country_code), "appid" : API_KEY}
     url = BASE_URL + "?" + query(query_data)
     
