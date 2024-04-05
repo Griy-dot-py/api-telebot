@@ -1,8 +1,18 @@
-from loader import bot
+from loader import bot, error_logger
+from telebot.custom_filters import StateFilter, IsDigitFilter
+from filters import ValidCity, ValidCountry, NoCommand
 import handlers  # noqa
-from utils.set_bot_commands import set_default_commands
+import utils
 
 
 if __name__ == "__main__":
-    set_default_commands(bot)
-    bot.infinity_polling()
+    utils.set_custom_filters(bot, StateFilter(bot), ValidCity(), ValidCountry(), NoCommand(), IsDigitFilter())
+    utils.set_all_commands(bot)
+    utils.logging.set_logging_to(bot, ["send_message"])
+    
+    try:
+        bot.infinity_polling()
+    except Exception:
+        error_logger.exception("", exc_info = True)
+        error_logger.critical("Критческая ошибка! Работа бота остановлена")
+        pass
