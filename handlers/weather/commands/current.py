@@ -5,6 +5,7 @@ from api import current_weather
 from utils.logging import log_from
 from .change_city import change_city_cmd
 
+
 @bot.message_handler(commands = ["current"])
 @log_from
 def current_cmd(message: Message):
@@ -13,7 +14,5 @@ def current_cmd(message: Message):
         change_city_cmd(message)
         return
     
-    city: City = City.get_by_id(user.city_id)
-    
-    weather = current_weather(city.latitude, city.longitude)
+    weather = current_weather(City.get_by_id(user.city_id))
     bot.send_message(message.chat.id, weather)

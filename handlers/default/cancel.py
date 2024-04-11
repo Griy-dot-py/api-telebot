@@ -14,7 +14,7 @@ def cancel_cmd(message: Message):
     msg = bot.send_message(message.chat.id, text)
     
     user: User = User.get(username = message.from_user.username)
-    if user.country_id is None or user.city_id is None:
+    if user.city_id is None:
         bot.edit_message_text("You must share your location so I can track weather in your region!",
                               msg.chat.id, msg.id)
         change_city_cmd(message)
