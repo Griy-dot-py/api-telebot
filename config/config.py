@@ -22,7 +22,8 @@ SETTING_COMMANDS = {
 }
 WEATHER_COMMANDS = {
     "current" : "check current weather in your city",
-    "low": "check weather forecast and show the least weather indicators"
+    "low": "check weather forecast and show the least weather indicators",
+    "high": "check weather forecast and show the highest weather indicators",
 }
 PATH_TO_DB = os.getenv("PATH_TO_DB")
 LOG_ERRORS = eval(os.getenv("LOG_ERRORS").capitalize())
