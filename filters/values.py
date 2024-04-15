@@ -8,7 +8,6 @@ class ValidValues(AdvancedCustomFilter):
     
     def check(self, message: Message, param: bool):
         floats = two_floats(message.text)
-        print(floats)
         if param is True and floats is not None:
             return True
         
