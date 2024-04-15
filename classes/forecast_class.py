@@ -37,7 +37,7 @@ class Forecast:
         acs_desc = ("Наибольшие показатели" if self.config.desc else
                     "Наименьшие показатели") if not self.config.custom else "Показатели"
         data_type, forecast_range = TRANSLATIONS[self.config.type], TRANSLATIONS[self.config.range]
-        value_range = "" if not self.config.custom else "в диапазоне [{}; {}]".format(self.config.min,
+        value_range = "" if not self.config.custom else " в диапазоне [{}; {}]".format(self.config.min,
                                                                                       self.config.max)
         title = f"{acs_desc} показатели {data_type} {forecast_range} в городе {self.city.name}{value_range}:"
         
