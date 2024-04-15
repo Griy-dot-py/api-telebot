@@ -15,6 +15,6 @@ def start_cmd(message: Message):
         new = User(username = message.from_user.username)
         new.save()
     
-    bot.send_message(message.chat.id, "Hello! I'm weather telebram bot")
+    bot.send_message(message.chat.id, "Здравствуйте! Я помогу вам узнать прогноз погоды")
     help_cmd(message)
     change_city_cmd(message)

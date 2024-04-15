@@ -15,5 +15,5 @@ def take_valid_city(message: Message):
     
     bot.send_message(
         message.chat.id,
-        f"Good! Now set up to track weather in {city.name}({city.country})")
+        f"Отлично! Теперь я отслеживаю погоду в городе {city.name}({city.country})")
     bot.delete_state(message.from_user.id, message.chat.id)

@@ -7,6 +7,16 @@ from utils.logging import log_from
 from api import forecast
 
 
+TRANSLATIONS = {
+    "temperature": "температуры",
+    "humidity": "влажности",
+    "wind_speed": "скорости ветра",
+    "today": "на сегодня",
+    "tomorrow": "на завтра",
+    "next_5_days": "в ближайшие 5 дней"
+}
+
+
 @bot.message_handler(no_cmd = True, state = AskFor.limit, is_digit = True)
 @log_from
 def take_limit(message: Message):
@@ -22,25 +32,24 @@ def take_limit(message: Message):
     stamps_left = len(forecast_values)
     
     if limit < 1:
-        bot.reply_to(message, "Too tiny number!")
+        bot.reply_to(message, "Слишком маленькое число!")
         return
     elif frange == "today" and stamps_left < limit:
-        bot.reply_to(message, f"No more than 1 stamp per 3 hours! Stamps left today: {stamps_left}")
+        bot.reply_to(message, f"Не чаще 1 измерения в 3 часа! Значений осталось на сегодня: {stamps_left}")
         return
     elif (frange == "tomorrow" and limit > 8) or (frange == "next_5_days" and limit > 40):
-        bot.reply_to(message, f"No more than 8 stamps per day!")
+        bot.reply_to(message, f"Не чаще 1 измерения в 3 часа!")
         return
     
     pretty_values = PrettyTimeData(type = dtype,
                                    raw = forecast_values,
                                    limit = limit,
                                    desc = desc)
-    if frange == "next_5_days":
-        frange = frange.replace("_", " ")
-    if dtype == "wind_speed":
-        dtype = dtype.replace("_", " ")
-    n_est, the = "highest" if desc else "least", "the " if len(forecast_values) > 8 else ""
-    title = f"The {n_est} values of {dtype} for {the}{frange} in {city.name}:"
+    
+    acs_desc = "Наибольшие" if desc else "Наименьшие"
+    data_type, forecast_range = TRANSLATIONS[dtype], TRANSLATIONS[frange]
+    
+    title = f"{acs_desc} показатели {data_type} {forecast_range} в городе {city.name}:"
     text = "\n".join((title, *repr(pretty_values).split("\n")))
     
     bot.send_message(message.chat.id, text)

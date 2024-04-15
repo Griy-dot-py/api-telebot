@@ -8,15 +8,15 @@ from utils.logging import log_from
 @log_from
 def help_cmd(message: Message):
     defaults = "\n".join((
-        "There is what I can do:",
+        "Что я умею делать:",
         *(f"/{cmd} - {about}" for cmd, about in DEFAULT_COMMANDS.items())
                         ))
     settings = "\n".join((
-        "Settings:",
+        "Настройки:",
         *(f"/{cmd} - {about}" for cmd, about in SETTING_COMMANDS.items())
     ))
     forecasts = "\n".join((
-        "Weather forecasts:",
+        "Прогноз погоды:",
         *(f"/{cmd} - {about}" for cmd, about in WEATHER_COMMANDS.items())
     ))
     

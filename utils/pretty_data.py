@@ -1,7 +1,7 @@
 class PrettyTimeData:
     types = {"humidity" : "%",
              "temperature" : "°C",
-             "wind_speed" : "m/s"}
+             "wind_speed" : "м/с"}
     
     def __init__(self, type: str, raw: dict[str, float], limit: int, desc: bool = False) -> None:
         self.unit = PrettyTimeData.types[type]
