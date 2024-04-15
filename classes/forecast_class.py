@@ -27,13 +27,19 @@ class Forecast:
         raw = forecast(self.city, self.config.type, self.config.range)
         
         item_list = [*raw.items()]
-        item_list.sort(key = lambda item: item[1], reverse = self.config.desc)
+        if self.config.custom:
+            item_list = [item for item in item_list if self.config.min <= item[1] <= self.config.max]
+        else:
+            item_list.sort(key = lambda item: item[1], reverse = self.config.desc)
         self.data = item_list[: self.config.limit]
     
     def complete(self) -> str:
-        acs_desc = "Наибольшие" if self.config.desc else "Наименьшие"
+        acs_desc = ("Наибольшие показатели" if self.config.desc else
+                    "Наименьшие показатели") if not self.config.custom else "Показатели"
         data_type, forecast_range = TRANSLATIONS[self.config.type], TRANSLATIONS[self.config.range]
-        title = f"{acs_desc} показатели {data_type} {forecast_range} в городе {self.city.name}:"
+        value_range = "" if not self.config.custom else "в диапазоне [{}; {}]".format(self.config.min,
+                                                                                      self.config.max)
+        title = f"{acs_desc} показатели {data_type} {forecast_range} в городе {self.city.name}{value_range}:"
         
         rows = [f"{datetime} : {value} {self.config.unit}" for datetime, value in self.data]
         text = "\n".join([title, *rows])

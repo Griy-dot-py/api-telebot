@@ -6,5 +6,5 @@ from utils.logging import log_from
 
 @bot.message_handler(no_cmd = True, state = AskFor.city, valid_city = "etc")
 @log_from
-def take_incorrect_city(message: Message):
+def take_invalid_city(message: Message):
     bot.send_message(message.chat.id, "К сожалению, мне не удалось найти такой город :(")

@@ -20,3 +20,4 @@ def high_cmd(message: Message):
     bot.set_state(message.from_user.id, AskFor.dtype, message.chat.id)
     with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
         data["desc"] = True
+        data["custom"] = False

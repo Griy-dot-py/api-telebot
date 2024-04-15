@@ -24,6 +24,7 @@ WEATHER_COMMANDS = {
     "current" : "погода в вашем городе сейчас",
     "low": "наименьшие значения показателей прогноза погоды",
     "high": "наибольшие значения показателей прогноза погоды",
+    "custom": "отфильтрованные значения показателей прогноза погоды"
 }
 PATH_TO_DB = os.getenv("PATH_TO_DB")
 LOG_ERRORS = eval(os.getenv("LOG_ERRORS").capitalize())
