@@ -1,6 +1,6 @@
 from telebot.types import Message
 from loader import bot
-from handlers.weather.commands import change_city_cmd
+from handlers.weather.message import change_city_cmd
 from handlers.default import help_cmd
 from database import User
 from utils.logging import log_from

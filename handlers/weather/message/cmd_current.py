@@ -3,7 +3,7 @@ from loader import bot
 from database import City, User
 from api import current_weather
 from utils.logging import log_from
-from .change_city import change_city_cmd
+from handlers.weather.message import change_city_cmd
 
 
 @bot.message_handler(commands = ["current"])

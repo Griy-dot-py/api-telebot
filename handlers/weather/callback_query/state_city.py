@@ -5,7 +5,7 @@ from database import User, City
 from utils.logging import log_call
 
 
-@bot.callback_query_handler(lambda call: not call.data == "<<back", state = AskFor.city)
+@bot.callback_query_handler(func = lambda call: True, state = AskFor.city)
 @log_call
 def take_call_city(call: CallbackQuery):
     user: User = User.get(username = call.from_user.username)
