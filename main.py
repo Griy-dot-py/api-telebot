@@ -1,12 +1,12 @@
 from loader import bot, error_logger
-from telebot.custom_filters import StateFilter, IsDigitFilter
-from filters import ValidCity, NoCommand
+from telebot.custom_filters import StateFilter
+from filters import ValidCity, NoCommand, ValidLimit
 import handlers  # noqa
 import utils
 
 
 if __name__ == "__main__":
-    utils.set_custom_filters(bot, StateFilter(bot), ValidCity(), NoCommand(), IsDigitFilter())
+    utils.set_custom_filters(bot, StateFilter(bot), ValidCity(), NoCommand(), ValidLimit())
     utils.set_all_commands(bot)
     utils.logging.set_logging_to(bot, ["send_message"])
     
