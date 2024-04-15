@@ -1,13 +1,14 @@
 import requests
 from config.config import API_KEY
+from database import City
 from utils import query
 
 BASE_URL= "http://api.openweathermap.org/data/2.5/weather"
 
 
-def current_weather(latitude: float, longitude: float): # °C
-    query_data = {"lat": latitude,
-                  "lon" : longitude,
+def current_weather(city: City): # °C
+    query_data = {"lat": city.latitude,
+                  "lon" : city.longitude,
                   "units" : "metric",
                   "lang" : "ru",
                   "appid" : API_KEY}
