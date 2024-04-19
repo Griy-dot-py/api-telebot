@@ -8,5 +8,5 @@ from utils.logging import log_from
 @log_from
 def change_city_cmd(message: Message):
     bot.send_message(message.chat.id,
-                     "To let me track weather in your region, please, enter your city name:")
+                     "Чтобы можно было отслеживать погоду, пожалуйста введите ваш город:")
     bot.set_state(message.from_user.id, AskFor.city, message.chat.id)

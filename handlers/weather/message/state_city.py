@@ -10,5 +10,8 @@ from utils.logging import log_from
 @log_from
 def take_city(message: Message):
     variants = geolocation(message.text, all = True)
-    bot.send_message(message.chat.id, "Cannot find such city, maybe you meant one of this:",
-                     reply_markup = city_variants(variants))
+    bot.send_message(
+        message.chat.id,
+        "Не могу найти такой город, может вы имели ввиду один из списка:",
+        reply_markup = city_variants(variants)
+        )

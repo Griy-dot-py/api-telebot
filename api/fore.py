@@ -30,7 +30,7 @@ def forecast(city: City, data_type: str, forecast_range: str) -> dict:
     elif data_type == "humidity":
         values = {data["dt_txt"][: -3]: data["main"]["humidity"] for data in main_list}
     elif data_type == "wind_speed":
-        values = {data["dt_txt"][: -3]: data["wind"]["speed"] for data in main_list}
+        values = {data["dt_txt"][: -3]: round(data["wind"]["speed"], 1) for data in main_list}
     else:
         raise ValueError(f"Invalid data type '{data_type}'")
     values: dict[str, float]

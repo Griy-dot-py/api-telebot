@@ -12,18 +12,19 @@ else:
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_KEY = os.getenv("API_KEY")
 DEFAULT_COMMANDS = {
-    "start" : "run bot",
-    "help" : "help with commands",
-    "hello_world" : "print \"Hello, world!\"",
-    "cancel" : "discard current operation"
+    "start" : "запустить бота",
+    "help" : "список комманд",
+    "hello_world" : "написать \"Привет, мир!\"",
+    "cancel" : "отменить текущую операцию"
 }
 SETTING_COMMANDS = {
-    "change_city" : "change your city"
+    "change_city" : "сменить город"
 }
 WEATHER_COMMANDS = {
-    "current" : "check current weather in your city",
-    "low": "check weather forecast and show the least weather indicators",
-    "high": "check weather forecast and show the highest weather indicators",
+    "current" : "погода в вашем городе сейчас",
+    "low": "наименьшие значения показателей прогноза погоды",
+    "high": "наибольшие значения показателей прогноза погоды",
+    "custom": "отфильтрованные значения показателей прогноза погоды"
 }
 PATH_TO_DB = os.getenv("PATH_TO_DB")
 LOG_ERRORS = eval(os.getenv("LOG_ERRORS").capitalize())
