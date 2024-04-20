@@ -8,9 +8,9 @@ from loader import message_logger
 def log_reply(reply_to_method: Callable) -> Callable:
     
     @wraps(reply_to_method)
-    def wrapped_method(self: TeleBot, message: Message, text: str, **kwargs):
+    def wrapped_method(*args, **kwargs):
         
-        message_logger.debug(f"to@{message.from_user.id}: {text}")
-        return reply_to_method(self, message, text, **kwargs)
+        message_logger.debug(f"to@{args[0].from_user.id}: {args[1]}")
+        return reply_to_method(*args, **kwargs)
 
     return wrapped_method

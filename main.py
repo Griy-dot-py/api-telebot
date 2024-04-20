@@ -12,7 +12,9 @@ if __name__ == "__main__":
                              filters.NoCommand(),
                              filters.ValidLimit(),
                              filters.ValidValues())
+    utils.set_tracking_history(bot)
     utils.set_all_commands(bot)
+    
     utils.logging.set_logging_to(bot, ["send_message"])
     utils.logging.set_logging_from(bot)
     utils.logging.set_logging_reply(bot)
