@@ -3,12 +3,10 @@ from loader import bot
 from database import get_user_city
 from handlers.weather.message import change_city_cmd
 from states import AskFor
-from utils.logging import log_from
 from keyboards.inline import dtype_markup
 
 
 @bot.message_handler(commands = ["low"])
-@log_from
 def low_cmd(message: Message):
     city = get_user_city(message.from_user)
     if city is None:

@@ -4,11 +4,9 @@ from states import AskFor
 from api import geolocation
 from database import set_ids_for_cities
 from keyboards.inline import city_variants
-from utils.logging import log_from
 
 
 @bot.message_handler(no_cmd = True, state = AskFor.city, valid_city = "soft")
-@log_from
 def take_city(message: Message):
     possible_cities = geolocation(message.text)
     cities_with_ids = set_ids_for_cities(possible_cities)

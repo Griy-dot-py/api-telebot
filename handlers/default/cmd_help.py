@@ -1,11 +1,9 @@
 from telebot.types import Message
 from loader import bot
 from config.config import DEFAULT_COMMANDS, SETTING_COMMANDS, WEATHER_COMMANDS
-from utils.logging import log_from
 
 
 @bot.message_handler(commands = ["help"])
-@log_from
 def help_cmd(message: Message):
     defaults = "\n".join((
         "Что я умею делать:",
