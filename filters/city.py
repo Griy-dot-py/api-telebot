@@ -1,6 +1,6 @@
 from telebot.types import Message
 from telebot.custom_filters import AdvancedCustomFilter
-from database import select_cities_by_name
+from database import select_cities_by_name, set_ids_for_cities
 from api import geolocation
 
 
@@ -12,9 +12,7 @@ class ValidCity(AdvancedCustomFilter):
             cities = geolocation(message.text)
             if cities is None:
                 return False
-            for city in cities:
-                if select_cities_by_name(city.name) is None:
-                    city.save()
+            set_ids_for_cities(cities)
             return True
         
         elif param == "hard":

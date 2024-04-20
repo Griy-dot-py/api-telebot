@@ -1,16 +1,14 @@
 from telebot.types import CallbackQuery
 from loader import bot
 from states import AskFor
-from database import authorize, get_city_or_create
+from database import authorize, get_city_by_id
 from utils.logging import log_call
 
 
 @bot.callback_query_handler(func = lambda call: True, state = AskFor.city)
 @log_call
 def take_call_city(call: CallbackQuery):
-    city_name, country, lat, lon = call.data.split(",")
-    city = get_city_or_create(name = city_name, country = country, latitude = lat, longitude = lon)
-    
+    city = get_city_by_id(int(call.data))
     user = authorize(call.from_user)
     user.city_id = city.id
     user.save()
