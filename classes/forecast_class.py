@@ -1,6 +1,6 @@
 from telebot import TeleBot
 from telebot.types import Message
-from database import User, City
+from database import get_user_city
 from classes import ForecastConfig
 
 from api import forecast
@@ -20,8 +20,7 @@ class Forecast:
     
     def __init__(self, message: Message, bot: TeleBot) -> None:
         self.config = ForecastConfig.extract(message, bot)
-        user: User = User.get(username = message.from_user.username)
-        self.city: City = City.get_by_id(user.city_id)
+        self.city = get_user_city(message.from_user)
     
     def update(self) -> None:
         raw = forecast(self.city, self.config.type, self.config.range)
