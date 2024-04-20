@@ -1,6 +1,6 @@
 from telebot.types import Message
 from telebot.custom_filters import AdvancedCustomFilter
-from database import City
+from database import select_cities_by_name
 from api import geolocation
 
 
@@ -9,23 +9,17 @@ class ValidCity(AdvancedCustomFilter):
     
     def check(self, message: Message, param: bool):   
         if param == "soft":
-            try:
-                City.get(name = message.text)
-            except City.DoesNotExist:
-                cities = geolocation(message.text, all = True)
-                if cities is None:
-                    return False
-                for city in cities:
-                    try:
-                        City.get(name = city.name)
-                    except City.DoesNotExist:
-                        city.save()
+            cities = geolocation(message.text)
+            if cities is None:
+                return False
+            for city in cities:
+                if select_cities_by_name(city.name) is None:
+                    city.save()
             return True
         
         elif param == "hard":
-            try:
-                City.get(name = message.text)
-            except City.DoesNotExist:
+            cities = select_cities_by_name(message.text)
+            if cities is None or len(cities) > 1:
                 return False
             return True
         
