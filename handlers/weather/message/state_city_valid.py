@@ -1,17 +1,13 @@
 from loader import bot
 from telebot.types import Message
 from states import AskFor
-from database import User, City
-from utils.logging import log_from
+from database import get_user_city, set_user_city
 
 
-@bot.message_handler(state = AskFor.city, valid_city = "hard")
-@log_from
+@bot.message_handler(no_cmd = True, state = AskFor.city, valid_city = "hard")
 def take_valid_city(message: Message):
-    user: User = User.get(username = message.from_user.username)
-    city: City = City.get(name = message.text)
-    user.city_id = city.id
-    user.save()
+    set_user_city(message.from_user, message.text)
+    city = get_user_city(message.from_user)
     
     bot.send_message(
         message.chat.id,

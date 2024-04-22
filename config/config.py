@@ -1,4 +1,3 @@
-from typing import OrderedDict
 import os
 from dotenv import load_dotenv, find_dotenv
 
@@ -12,16 +11,17 @@ else:
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_KEY = os.getenv("API_KEY")
 DEFAULT_COMMANDS = {
-    "start" : "запустить бота",
-    "help" : "список комманд",
-    "hello_world" : "написать \"Привет, мир!\"",
-    "cancel" : "отменить текущую операцию"
+    "start": "запустить бота",
+    "help": "список комманд",
+    "hello_world": "написать \"Привет, мир!\"",
+    "cancel": "отменить текущую операцию",
+    "history": "краткая история запросов"
 }
 SETTING_COMMANDS = {
-    "change_city" : "сменить город"
+    "change_city": "сменить город"
 }
 WEATHER_COMMANDS = {
-    "current" : "погода в вашем городе сейчас",
+    "current": "погода в вашем городе сейчас",
     "low": "наименьшие значения показателей прогноза погоды",
     "high": "наибольшие значения показателей прогноза погоды",
     "custom": "отфильтрованные значения показателей прогноза погоды"

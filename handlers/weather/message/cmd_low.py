@@ -1,17 +1,15 @@
 from telebot.types import Message
 from loader import bot
-from database import User
+from database import get_user_city
 from handlers.weather.message import change_city_cmd
 from states import AskFor
-from utils.logging import log_from
 from keyboards.inline import dtype_markup
 
 
 @bot.message_handler(commands = ["low"])
-@log_from
 def low_cmd(message: Message):
-    user: User = User.get(username = message.from_user.username)
-    if user.city_id is None:
+    city = get_user_city(message.from_user)
+    if city is None:
         change_city_cmd(message)
         return
     

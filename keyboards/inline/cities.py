@@ -14,9 +14,6 @@ def __button_gen(cities: list[City]) -> Iterator[InlineKeyboardButton]:
     for city in cities:
         button = InlineKeyboardButton(
             text = f"{city.name}({city.country})",
-            callback_data = ",".join([city.name,
-                                      city.country,
-                                      str(city.latitude),
-                                      str(city.longitude)])
+            callback_data = f"{city.id}"
         )
         yield button
